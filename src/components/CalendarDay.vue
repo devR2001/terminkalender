@@ -17,7 +17,14 @@ export default {
   components: {
     CalendarEvent,
   },
-  props: ["day"]
+  // Array Schreibweise; Nicht zu empfehlen
+  // props: ["day"]
+
+  // Objekt-Schreibweise
+  props: {
+    // Mögliche Typen: String, Number, Boolean, Object, Array oder Function
+    day: Object
+  }
 };
 </script>
 
