@@ -24,7 +24,10 @@ export default {
   props: {
     // Mögliche Typen: String, Number, Boolean, Object, Array oder Function
     // Mehrere Typen mit Array-Schreibweise: [String, Number]
-    day: Object
+    day: {
+      type: Object,
+      required: true,
+    }
   }
 };
 </script>
