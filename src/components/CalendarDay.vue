@@ -23,6 +23,7 @@ export default {
   // Objekt-Schreibweise
   props: {
     // Mögliche Typen: String, Number, Boolean, Object, Array oder Function
+    // Mehrere Typen mit Array-Schreibweise: [String, Number]
     day: Object
   }
 };
