@@ -1,5 +1,5 @@
 <template>
-  <div class="card" >
+  <div class="card">
     <div class="card-header text-center" role="button">
       <strong>{{ day.fullName }}</strong>
     </div>
@@ -29,16 +29,22 @@ export default {
       required: true,
       // Bei primitiven Datentypen: default: 100
       // Bei nicht-primitiven Datentypen
-      default: function (){
+      default: function () {
         // Wenn keine Daten vorhanden sind, dann wird dieser Teil ausgegeben
         return {
           id: -1,
           fullName: "Fehlender Wochentag",
-          events: []
+          events: [],
+        };
+      },
+      // value ist in dem Fall dann "day"
+      validator: function (value) {
+        if (Object.keys(value).includes("id")) {
+          return true;
         }
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 
