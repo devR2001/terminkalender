@@ -27,6 +27,16 @@ export default {
     day: {
       type: Object,
       required: true,
+      // Bei primitiven Datentypen: default: 100
+      // Bei nicht-primitiven Datentypen
+      default: function (){
+        // Wenn keine Daten vorhanden sind, dann wird dieser Teil ausgegeben
+        return {
+          id: -1,
+          fullName: "Fehlender Wochentag",
+          events: []
+        }
+      }
     }
   }
 };
