@@ -2,7 +2,7 @@
   <div id="calendar-event">
     <div class="alert text-center">
       <div>
-        <strong>{{ event.priority }}</strong>
+        <strong>{{ priorityDisplayName }}</strong>
       </div>
 
       <div>{{ event.title }}</div>
