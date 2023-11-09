@@ -21,6 +21,19 @@ export default {
     props: {
       event: Object,
     },
+    computed: {
+      priorityDisplayName(){
+        switch(this.event.priority){
+          case 1:
+            return "Tief";
+          case 0:
+            return "Mittel";
+          case -1:
+            return "Hoch";
+        }
+        return "Unbekannte Priorität"
+      }
+    }
 };
 </script>
 
