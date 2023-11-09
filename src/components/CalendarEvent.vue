@@ -2,10 +2,10 @@
   <div id="calendar-event">
     <div class="alert text-center">
       <div>
-        <strong>Hoch</strong>
+        <strong>{{ event.priority }}</strong>
       </div>
 
-      <div>Vue.js 3 lernen</div>
+      <div>{{ event.title }}</div>
 
       <div>
         <i class="fas fa-edit me-2" role="button"></i>
@@ -17,7 +17,10 @@
 
 <script>
 export default {
-    name: "CalendarEvent"
+    name: "CalendarEvent",
+    props: {
+      event: Object,
+    },
 };
 </script>
 
