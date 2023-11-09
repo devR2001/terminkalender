@@ -1,6 +1,6 @@
 <template>
   <div id="calendar-event">
-    <div class="alert text-center">
+    <div class="alert text-center" :class="alertColor">
       <div>
         <strong>{{ priorityDisplayName }}</strong>
       </div>
@@ -32,6 +32,9 @@ export default {
             return "Hoch";
         }
         return "Unbekannte Priorität"
+      },
+      alertColor(){
+        return "alert-" + this.event.color
       }
     }
 };
