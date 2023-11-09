@@ -4,7 +4,7 @@
       <strong>{{ day.fullName }}</strong>
     </div>
     <div class="card-body">
-      <CalendarEvent />
+      <CalendarEvent v-for="event in day.events" :key="event.title"/>
     </div>
   </div>
 </template>
