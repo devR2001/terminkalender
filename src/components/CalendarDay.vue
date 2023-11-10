@@ -13,8 +13,9 @@
         :key="event.title"
         :event="event"
       >
-        <template v-slot:eventPriority="slotProps"
-          ><h5>{{ slotProps.priorityDisplayName }}</h5></template
+        <!-- <template v-slot:eventPriority="slotProps"> -->
+        <template #eventPriority="slotProps">
+          <h5>{{ slotProps.priorityDisplayName }}</h5></template
         >
         <!-- <template v-slot:default></template> -->
         <template v-slot:event="slotProps"><i>{{ slotProps.event.title }}</i></template>
