@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <div class="card-header text-center" role="button">
+  <div class="card border-start" :class="cardClasses">
+    <div class="card-header text-center" role="button" :class="cardHeaderClasses">
       <strong>{{ day.fullName }}</strong>
     </div>
     <div class="card-body">
@@ -11,6 +11,7 @@
 
 <script>
 import CalendarEvent from "./CalendarEvent.vue";
+import Store from "@/store";
 
 export default {
   name: "CalendarDay",
@@ -45,6 +46,14 @@ export default {
       },
     },
   },
+  computed: {
+    cardClasses(){
+      return this.day.id === Store.getters.activeDay().id ? ["border-primary"] : null
+    },
+    cardHeaderClasses(){
+      return this.day.id === Store.getters.activeDay().id ? ["bg-primary", "text-white"] : null
+    }
+  }
 };
 </script>
 
