@@ -1,13 +1,23 @@
 <template>
   <div class="card border-start" :class="cardClasses">
-    <div class="card-header text-center" role="button" :class="cardHeaderClasses">
+    <div
+      class="card-header text-center"
+      role="button"
+      :class="cardHeaderClasses"
+    >
       <strong>{{ day.fullName }}</strong>
     </div>
     <div class="card-body">
-      <CalendarEvent v-for="event in day.events" :key="event.title" :event="event">
-      <template v-slot:eventPriority></template>
-      <!-- <template v-slot:default></template> -->
-      <template v-slot></template>
+      <CalendarEvent
+        v-for="event in day.events"
+        :key="event.title"
+        :event="event"
+      >
+        <template v-slot:eventPriority="slotProps"
+          ><h5>{{ slotProps.priorityDisplayName }}</h5></template
+        >
+        <!-- <template v-slot:default></template> -->
+        <template v-slot:event="slotProps"><i>{{ slotProps.event.title }}</i></template>
       </CalendarEvent>
     </div>
   </div>
@@ -51,13 +61,17 @@ export default {
     },
   },
   computed: {
-    cardClasses(){
-      return this.day.id === Store.getters.activeDay().id ? ["border-primary"] : null
+    cardClasses() {
+      return this.day.id === Store.getters.activeDay().id
+        ? ["border-primary"]
+        : null;
     },
-    cardHeaderClasses(){
-      return this.day.id === Store.getters.activeDay().id ? ["bg-primary", "text-white"] : null
-    }
-  }
+    cardHeaderClasses() {
+      return this.day.id === Store.getters.activeDay().id
+        ? ["bg-primary", "text-white"]
+        : null;
+    },
+  },
 };
 </script>
 
