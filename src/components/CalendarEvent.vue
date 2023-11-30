@@ -1,25 +1,28 @@
 <template>
   <div id="calendar-event">
     <div class="alert text-center" :class="alertColor">
-      <div>
-        <slot name="eventPriority" :priorityDisplayName="priorityDisplayName">
-          <strong>{{ priorityDisplayName }}</strong>
-        </slot>
-      </div>
+      <!-- Template für den Fall, dass das Event nicht angezeigt wird -->
+      <div v-if="!event.edit">
+        <div>
+          <slot name="eventPriority" :priorityDisplayName="priorityDisplayName">
+            <strong>{{ priorityDisplayName }}</strong>
+          </slot>
+        </div>
 
-      <slot :event="event">
-        <div>{{ event.title }}</div>
-      </slot>
-      <div>
-        <i class="fas fa-edit me-2" role="button"></i>
-        <i class="far fa-trash-alt" role="button" @click="deleteEvent()"></i>
+        <slot :event="event">
+          <div>{{ event.title }}</div>
+        </slot>
+        <div>
+          <i class="fas fa-edit me-2" role="button"></i>
+          <i class="far fa-trash-alt" role="button" @click="deleteEvent()"></i>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Store from '@/store';
+import Store from "@/store";
 
 export default {
   name: "CalendarEvent",
@@ -43,11 +46,11 @@ export default {
       return "alert-" + this.event.color;
     },
   },
-  methods:{
-    deleteEvent(){
-      Store.mutations.deleteEvent(this.day.id, this.event.title)
-    }
-  }
+  methods: {
+    deleteEvent() {
+      Store.mutations.deleteEvent(this.day.id, this.event.title);
+    },
+  },
 };
 </script>
 
