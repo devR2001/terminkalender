@@ -2,7 +2,7 @@
   <div id="calendar-event">
     <div class="alert text-center" :class="alertColor">
       <!-- Template für den Fall, dass das Event nicht angezeigt wird -->
-      <div v-if="!event.edit">
+      <template v-if="!event.edit">
         <div>
           <slot name="eventPriority" :priorityDisplayName="priorityDisplayName">
             <strong>{{ priorityDisplayName }}</strong>
@@ -13,10 +13,13 @@
           <div>{{ event.title }}</div>
         </slot>
         <div>
-          <i class="fas fa-edit me-2" role="button"></i>
+          <i class="fas fa-edit me-2" role="button" @click="editEvent()"></i>
           <i class="far fa-trash-alt" role="button" @click="deleteEvent()"></i>
         </div>
-      </div>
+      </template>
+      <template v-else>
+        <p>Test</p>
+      </template>
     </div>
   </div>
 </template>
@@ -50,6 +53,9 @@ export default {
     deleteEvent() {
       Store.mutations.deleteEvent(this.day.id, this.event.title);
     },
+    editEvent(){
+      Store.mutations.editEvent(this.day.id, this.event.title)
+    }
   },
 };
 </script>
