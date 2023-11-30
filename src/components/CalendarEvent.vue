@@ -7,22 +7,25 @@
         </slot>
       </div>
 
-      <slot>
+      <slot :event="event">
         <div>{{ event.title }}</div>
       </slot>
       <div>
         <i class="fas fa-edit me-2" role="button"></i>
-        <i class="far fa-trash-alt" role="button"></i>
+        <i class="far fa-trash-alt" role="button" @click="deleteEvent()"></i>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Store from '@/store';
+
 export default {
   name: "CalendarEvent",
   props: {
     event: Object,
+    day: Object,
   },
   computed: {
     priorityDisplayName() {
@@ -40,6 +43,11 @@ export default {
       return "alert-" + this.event.color;
     },
   },
+  methods:{
+    deleteEvent(){
+      Store.mutations.deleteEvent(this.day.id, this.event.title)
+    }
+  }
 };
 </script>
 
