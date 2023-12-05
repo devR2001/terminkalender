@@ -26,7 +26,7 @@
         />
         <div>{{ newEventTitle }}</div>
         <hr />
-        <i class="fas fa-check" @click="updateEvent()"></i>
+        <i class="fas fa-check" role="button" @click="updateEvent()"></i>
       </template>
     </div>
   </div>

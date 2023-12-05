@@ -21,6 +21,7 @@ const mutations = {
     eventObj.edit = true;
   },
   updateEvent(dayId, oldEventTitle, newEventTitle) {
+    newEventTitle = newEventTitle !== "" ? newEventTitle : oldEventTitle
     const dayObj = state.calendarWeekData.find((day) => day.id === dayId);
     const eventObj = dayObj.events.find((event) => event.title === oldEventTitle);
     eventObj.title = newEventTitle;
