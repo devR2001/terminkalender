@@ -18,7 +18,9 @@
         </div>
       </template>
       <template v-else>
-        <p>Test</p>
+        <input type="text" class="form-control" :placeholder="event.title" />
+        <hr>
+        <i class="fas fa-check"></i>
       </template>
     </div>
   </div>
