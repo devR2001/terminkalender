@@ -21,6 +21,7 @@
         <input
           type="text"
           class="form-control"
+          ref="newEventTitleInput"
           :placeholder="event.title"
           @input="setNewEventTitle($event)"
         />
@@ -73,13 +74,21 @@ export default {
     },
     editEvent() {
       Store.mutations.editEvent(this.day.id, this.event.title);
+      // Auf die Template-refs zugreifen
+      this.$nextTick(() => {
+        this.$refs.newEventTitleInput.focus();
+      })
+
     },
-    updateEvent(){
-      Store.mutations.updateEvent(this.day.id, this.event.title, {title: this.newEventTitle, priority: this.newEventPriority});
+    updateEvent() {
+      Store.mutations.updateEvent(this.day.id, this.event.title, {
+        title: this.newEventTitle,
+        priority: this.newEventPriority,
+      });
     },
-    setNewEventTitle(event){
+    setNewEventTitle(event) {
       this.newEventTitle = event.target.value;
-    }
+    },
   },
 };
 </script>
