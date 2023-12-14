@@ -7,7 +7,10 @@
         </h5>
       </div>
       <div class="card-body">
-        {{ event }}
+        <!-- {{ event }} -->
+        <div class="alert alert-danger" v-if="error">
+          Der Titel darf nicht leer sein
+        </div>
         <input type="text" class="form-control" placeholder="Neuer Eintrag" v-model="event.title"/>
         <select class="form-select mt-2" v-model="event.priority">
           <option value="-1">Hoch</option>
@@ -48,6 +51,7 @@ export default {
         color: "primary",
         priority: 0,
       },
+      error: false,
     };
   },
   computed: {
@@ -68,7 +72,14 @@ export default {
       this.event.color = eventColor
     },
     submitEvent(){
-      Store.mutations.storeEvent(this.event)
+      if(this.event.title === "") return (this.error = true)
+
+      Store.mutations.storeEvent(this.event);
+      this.event = {
+        title: "",
+        color: "primary",
+        priority: 0,
+      }
     }
   },
 };
