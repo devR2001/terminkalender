@@ -27,7 +27,7 @@
         </div>
         <hr />
         <div class="d-grid gap-2">
-          <button class="btn btn-primary">Eintragen</button>
+          <button class="btn btn-primary" @click="submitEvent()">Eintragen</button>
           <button class="btn btn-danger">Inhalt löschen</button>
         </div>
       </div>
@@ -66,6 +66,9 @@ export default {
     },
     setEventColor(eventColor){
       this.event.color = eventColor
+    },
+    submitEvent(){
+      Store.mutations.storeEvent(this.event)
     }
   },
 };
