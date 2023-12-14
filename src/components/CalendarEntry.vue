@@ -35,7 +35,11 @@
         </div>
         <hr />
         <div class="d-grid gap-2">
-          <button class="btn btn-primary" @click="submitEvent()">
+          <button
+            class="btn btn-primary"
+            :disabled="submitEventButtonStatus"
+            @click="submitEvent()"
+          >
             Eintragen
           </button>
           <button class="btn btn-danger">Inhalt löschen</button>
@@ -65,6 +69,9 @@ export default {
     activeDayName() {
       return Store.getters.activeDay().fullName;
     },
+    submitEventButtonStatus() {
+      return this.event.title === "";
+    },
   },
   methods: {
     eventColorClasses(eventColor) {
@@ -87,7 +94,7 @@ export default {
         color: "primary",
         priority: 0,
       };
-      this.error = false
+      this.error = false;
     },
   },
 };
