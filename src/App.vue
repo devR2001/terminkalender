@@ -3,8 +3,9 @@
     <div class="row">
       <div class="col-12">
         <!-- Anfang: Template für die Calendar-Week-Component -->
-        <CalendarWeekAsList />
-        <CalendarWeek />
+        <!-- <CalendarWeekAsList />
+        <CalendarWeek /> -->
+        <component :is="activeView" />
         <!-- Ende: Template für die Calendar-Week-Component -->
       </div>
     </div>
@@ -17,12 +18,16 @@
       <div class="col-2 offset-2">
         <div class="float-end">
           <!-- Mit dem Button blenden wir die Calendar-Settings-Component ein bzw. aus. -->
-          <button @click="toggleDisplaySettings()" :class="buttonSettingsClasses" class="btn btn-lg mb-2">
+          <button
+            @click="toggleDisplaySettings()"
+            :class="buttonSettingsClasses"
+            class="btn btn-lg mb-2"
+          >
             <i class="fas fa-cogs"></i>
           </button>
         </div>
         <!-- Anfang: Template für die Calendar-Settings-Component -->
-        <CalendarSettings v-if="displaySettings"/>
+        <CalendarSettings v-if="displaySettings" />
         <!-- Ende: Template für die Calendar-Day-Component -->
       </div>
     </div>
@@ -31,7 +36,7 @@
 
 <script>
 import { defineAsyncComponent } from "vue";
-
+import Store from "./store";
 import CalendarWeek from "./components/CalendarWeek.vue";
 import CalendarWeekAsList from "./components/CalendarWeekAsList.vue";
 import CalendarEntry from "./components/CalendarEntry.vue";
@@ -47,24 +52,30 @@ export default {
     CalendarWeek,
     CalendarWeekAsList,
     CalendarEntry,
-    CalendarSettings: defineAsyncComponent(() => import(/*webpackChunkName: 'CalendarSettingsComponent' */ './components/CalendarSettings.vue'))
+    CalendarSettings: defineAsyncComponent(() =>
+      import(
+        /*webpackChunkName: 'CalendarSettingsComponent' */ "./components/CalendarSettings.vue"
+      )
+    ),
   },
-  data(){
+  data() {
     return {
       displaySettings: false,
-    }
+    };
   },
-  computed:{
-    buttonSettingsClasses(){
-      return this.displaySettings ? ["btn-success"] : ["btn-outline-success"]
-    }
-  }
-  ,
-  methods:{
-    toggleDisplaySettings(){
-      this.displaySettings = !this.displaySettings
-    }
-  }
+  computed: {
+    buttonSettingsClasses() {
+      return this.displaySettings ? ["btn-success"] : ["btn-outline-success"];
+    },
+    activeView() {
+      return Store.getters.activeView();
+    },
+  },
+  methods: {
+    toggleDisplaySettings() {
+      this.displaySettings = !this.displaySettings;
+    },
+  },
 };
 </script>
 
