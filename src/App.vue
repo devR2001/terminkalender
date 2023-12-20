@@ -29,9 +29,11 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from "vue";
+
 import CalendarWeek from "./components/CalendarWeek.vue";
 import CalendarEntry from "./components/CalendarEntry.vue";
-import CalendarSettings from "./components/CalendarSettings.vue";
+// import CalendarSettings from "./components/CalendarSettings.vue";
 
 export default {
   name: "App",
@@ -42,7 +44,9 @@ export default {
     //Kurzschreibweise
     CalendarWeek,
     CalendarEntry,
-    CalendarSettings,
+    CalendarSettings: defineAsyncComponent(() => {
+      import("./components/CalendarSettings.vue")
+    }) ,
   },
   data(){
     return {
