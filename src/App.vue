@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-12">
         <!-- Anfang: Template für die Calendar-Week-Component -->
+        <CalendarWeekAsList />
         <CalendarWeek />
         <!-- Ende: Template für die Calendar-Week-Component -->
       </div>
@@ -32,6 +33,7 @@
 import { defineAsyncComponent } from "vue";
 
 import CalendarWeek from "./components/CalendarWeek.vue";
+import CalendarWeekAsList from "./components/CalendarWeekAsList.vue";
 import CalendarEntry from "./components/CalendarEntry.vue";
 // import CalendarSettings from "./components/CalendarSettings.vue";
 
@@ -43,6 +45,7 @@ export default {
 
     //Kurzschreibweise
     CalendarWeek,
+    CalendarWeekAsList,
     CalendarEntry,
     CalendarSettings: defineAsyncComponent(() => import(/*webpackChunkName: 'CalendarSettingsComponent' */ './components/CalendarSettings.vue'))
   },
