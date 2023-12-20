@@ -3,26 +3,31 @@ import { reactive, readonly } from "vue";
 
 const state = reactive({
   calendarWeekData,
+  activeView: "CalendarWeek",
 });
 
 const getters = {
   activeDay: () => state.calendarWeekData.find((day) => day.active),
+  activeView: () => state.activeView,
 };
 
 const mutations = {
-  setActiveDay(dayId){
+  setActiveDay(dayId) {
     state.calendarWeekData.map((dayObj) => {
-      dayObj.id === dayId ? (dayObj.active = true) : (dayObj.active = false)
-    })
+      dayObj.id === dayId ? (dayObj.active = true) : (dayObj.active = false);
+    });
   },
-  storeEvent(eventDO){
+  setActiveView(view) {
+    state.activeView = view;
+  },
+  storeEvent(eventDO) {
     const activeDay = getters.activeDay();
     activeDay.events.push({
       title: eventDO.title,
       edit: false,
       color: eventDO.color,
-      priority: Number(eventDO.priority)
-    })
+      priority: Number(eventDO.priority),
+    });
   },
   editEvent(dayId, eventTitle) {
     // Alle edit-Attribute auf false setzen, damit immer nur ein Event bearbeitet werden kann
