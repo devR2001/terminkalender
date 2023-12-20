@@ -44,9 +44,7 @@ export default {
     //Kurzschreibweise
     CalendarWeek,
     CalendarEntry,
-    CalendarSettings: defineAsyncComponent(() => {
-      import("./components/CalendarSettings.vue")
-    }) ,
+    CalendarSettings: defineAsyncComponent(() => import(/*webpackChunkName: 'CalendarSettingsComponent' */ './components/CalendarSettings.vue'))
   },
   data(){
     return {
