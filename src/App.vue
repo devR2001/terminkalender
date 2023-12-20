@@ -16,7 +16,7 @@
       <div class="col-2 offset-2">
         <div class="float-end">
           <!-- Mit dem Button blenden wir die Calendar-Settings-Component ein bzw. aus. -->
-          <button @click="toggleDisplaySettings()" class="btn btn-lg mb-2">
+          <button @click="toggleDisplaySettings()" :class="buttonSettingsClasses" class="btn btn-lg mb-2">
             <i class="fas fa-cogs"></i>
           </button>
         </div>
@@ -49,6 +49,12 @@ export default {
       displaySettings: false,
     }
   },
+  computed:{
+    buttonSettingsClasses(){
+      return this.displaySettings ? ["btn-success"] : ["btn-outline-success"]
+    }
+  }
+  ,
   methods:{
     toggleDisplaySettings(){
       this.displaySettings = !this.displaySettings
