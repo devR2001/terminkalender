@@ -9,6 +9,7 @@
       <strong>{{ day.fullName }}</strong>
     </div>
     <div class="card-body">
+      <transition name="fade" mode="out-in">
       <div v-if="day.events.length">
         <CalendarEvent
         v-for="event in day.events"
@@ -28,6 +29,7 @@
           <i>Keine Termine</i>
         </div>
       </div>
+    </transition>
     </div>
   </div>
 </template>
