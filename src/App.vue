@@ -95,16 +95,19 @@ export default {
 /* Transition: Fade */
 /* Hat die Transition kein name Attribut, dann ist der Name immer automatisch "v" */
 
-.fade-enter-from {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
-.fade-enter-to {
+.fade-enter-to,
+.fade-leave-from {
   opacity: 1;
 }
-.fade-enter-active {
+.fade-enter-active,
+.fade-leave-active {
  transition: all 0.25s ease-out;
 }
-.fade-leave-from {
+/* .fade-leave-from {
   opacity: 1;
 }
 .fade-leave-to {
@@ -112,5 +115,5 @@ export default {
 }
 .fade-leave-active {
  transition: all 0.25s ease-out;
-}
+} */
 </style>
