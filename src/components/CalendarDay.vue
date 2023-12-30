@@ -10,26 +10,31 @@
     </div>
     <div class="card-body">
       <transition name="fade" mode="out-in">
-      <div v-if="day.events.length">
-        <CalendarEvent
-        v-for="event in day.events"
-        :key="event.title"
-        :event="event"
-        :day="day"      >
-        <!-- <template v-slot:eventPriority="slotProps"> -->
-        <template #eventPriority="slotProps">
-          <h5>{{ slotProps.priorityDisplayName }}</h5></template
-        >
-        <!-- <template v-slot:default></template> -->
-        <template v-slot:event="slotProps"><i>{{ slotProps.event.title }}</i></template>
-      </CalendarEvent>
-      </div>
-      <div v-else>
-        <div class="alert alert-light text-center">
-          <i>Keine Termine</i>
+        <div v-if="day.events.length">
+          <transition-group name="list">
+            <CalendarEvent
+              v-for="event in day.events"
+              :key="event.title"
+              :event="event"
+              :day="day"
+            >
+              <!-- <template v-slot:eventPriority="slotProps"> -->
+              <template #eventPriority="slotProps">
+                <h5>{{ slotProps.priorityDisplayName }}</h5></template
+              >
+              <!-- <template v-slot:default></template> -->
+              <template v-slot:event="slotProps"
+                ><i>{{ slotProps.event.title }}</i></template
+              >
+            </CalendarEvent>
+          </transition-group>
         </div>
-      </div>
-    </transition>
+        <div v-else>
+          <div class="alert alert-light text-center">
+            <i>Keine Termine</i>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -84,11 +89,28 @@ export default {
     },
   },
   methods: {
-    setActiveDay(){
-      Store.mutations.setActiveDay(this.day.id)
-    }
-  }
+    setActiveDay() {
+      Store.mutations.setActiveDay(this.day.id);
+    },
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.list-enter-from,
+.list-leave-to {
+opacity: 0;
+transform: translateY(30px);
+}
+
+/* .list-enter-to,
+.list-leave-from {
+  opacity: 1;
+transform: translateY(0px);
+} */
+
+.list-enter-active,
+.list-leave-active {
+  transform: all 1s ease;
+}
+</style>
