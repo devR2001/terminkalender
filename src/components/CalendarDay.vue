@@ -9,7 +9,8 @@
       <strong>{{ day.fullName }}</strong>
     </div>
     <div class="card-body">
-      <CalendarEvent
+      <div v-if="day.events.length">
+        <CalendarEvent
         v-for="event in day.events"
         :key="event.title"
         :event="event"
@@ -21,6 +22,12 @@
         <!-- <template v-slot:default></template> -->
         <template v-slot:event="slotProps"><i>{{ slotProps.event.title }}</i></template>
       </CalendarEvent>
+      </div>
+      <div v-else>
+        <div class="alert alert-light text-center">
+          <i>Keine Termine</i>
+        </div>
+      </div>
     </div>
   </div>
 </template>
