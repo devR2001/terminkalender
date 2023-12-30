@@ -29,7 +29,9 @@
           </button>
         </div>
         <!-- Anfang: Template für die Calendar-Settings-Component -->
-        <CalendarSettings v-if="displaySettings" />
+        <transition name="fade">
+          <CalendarSettings v-if="displaySettings" />
+        </transition>
         <!-- Ende: Template für die Calendar-Day-Component -->
       </div>
     </div>
@@ -88,5 +90,18 @@ export default {
 .square {
   width: 40px;
   height: 40px;
+}
+
+/* Transition: Fade */
+/* Hat die Transition kein name Attribut, dann ist der Name immer automatisch "v" */
+
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-enter-active {
+ transition: all 0.25s ease-out;
 }
 </style>
