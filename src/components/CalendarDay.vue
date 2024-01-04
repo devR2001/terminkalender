@@ -116,4 +116,7 @@ transform: translateY(0px);
 .list-leave-active {
   transform: all 1s ease;
 }
+.list-move {
+  transition: transform 0.8s ease;
+}
 </style>
