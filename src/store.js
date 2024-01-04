@@ -18,9 +18,8 @@ const getters = {
         return 1;
       } else if (eventA[state.activeOrdering] < eventB[state.activeOrdering]) {
         return -1;
-      } else {
-        return 0;
       }
+      return 0;
     });
   },
 };
@@ -51,7 +50,7 @@ const mutations = {
     state.calendarWeekData.map((dayObj) => {
       dayObj.events.map((event) => (event.edit = false));
     });
-    // Setze das entsprechende edit-Attribut auf true
+    // Setze das entsprechende edit-Attribut auf trie
     const dayObj = state.calendarWeekData.find((day) => day.id === dayId);
     const eventObj = dayObj.events.find((event) => event.title === eventTitle);
     eventObj.edit = true;

@@ -2,8 +2,8 @@
   <div class="card border-start" :class="cardClasses">
     <div
       class="card-header text-center"
-      role="button"
       :class="cardHeaderClasses"
+      role="button"
       @click="setActiveDay()"
     >
       <strong>{{ day.fullName }}</strong>
@@ -20,11 +20,11 @@
             >
               <!-- <template v-slot:eventPriority="slotProps"> -->
               <template #eventPriority="slotProps">
-                <h5>{{ slotProps.priorityDisplayName }}</h5></template
-              >
+                <h5>{{ slotProps.priorityDisplayName }}</h5>
+              </template>
               <!-- <template v-slot:default></template> -->
-              <template v-slot:event="slotProps"
-                ><i>{{ slotProps.event.title }}</i></template
+              <template #default="{ event: entry }"
+                ><i>{{ entry.title }}</i></template
               >
             </CalendarEvent>
           </transition-group>
@@ -40,35 +40,34 @@
 </template>
 
 <script>
-import CalendarEvent from "./CalendarEvent.vue";
-import Store from "@/store";
+import CalendarEvent from "./CalendarEvent";
+import Store from "../store";
 
 export default {
   name: "CalendarDay",
   components: {
     CalendarEvent,
   },
-  // Array Schreibweise; Nicht zu empfehlen
-  // props: ["day"]
+  // Array-Schreibweise; Nicht zu empfehlen
+  // props: ["day"],
 
   // Objekt-Schreibweise
   props: {
-    // Mögliche Typen: String, Number, Boolean, Object, Array oder Function
+    // Mögliche Typen: String, Number, Boolean, Array, Object oder Function
     // Mehrere Typen mit Array-Schreibweise: [String, Number]
+    // day: Object
     day: {
       type: Object,
       required: true,
       // Bei primitiven Datentypen: default: 100
       // Bei nicht-primitiven Datentypen
       default: function () {
-        // Wenn keine Daten vorhanden sind, dann wird dieser Teil ausgegeben
         return {
           id: -1,
           fullName: "Fehlender Wochentag",
           events: [],
         };
       },
-      // value ist in dem Fall dann "day"
       validator: function (value) {
         if (Object.keys(value).includes("id")) {
           return true;
@@ -76,6 +75,7 @@ export default {
       },
     },
   },
+
   computed: {
     cardClasses() {
       return this.day.id === Store.getters.activeDay().id
@@ -87,10 +87,11 @@ export default {
         ? ["bg-primary", "text-white"]
         : null;
     },
-    events(){
-      return Store.getters.events(this.day.id)
-    }
+    events() {
+      return Store.getters.events(this.day.id);
+    },
   },
+
   methods: {
     setActiveDay() {
       Store.mutations.setActiveDay(this.day.id);
@@ -102,19 +103,17 @@ export default {
 <style scoped>
 .list-enter-from,
 .list-leave-to {
-opacity: 0;
-transform: translateY(30px);
+  opacity: 0;
+  transform: translateY(30px);
 }
-
 /* .list-enter-to,
 .list-leave-from {
   opacity: 1;
-transform: translateY(0px);
+  transform: translateY(0);
 } */
-
 .list-enter-active,
 .list-leave-active {
-  transform: all 1s ease;
+  transition: all 1s ease;
 }
 .list-move {
   transition: transform 0.8s ease;

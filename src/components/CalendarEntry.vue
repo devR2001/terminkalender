@@ -7,9 +7,8 @@
         </h5>
       </div>
       <div class="card-body">
-        <!-- {{ event }} -->
         <div class="alert alert-danger" v-if="error">
-          Der Titel darf nicht leer sein
+          Der Titel darf nicht leer sein.
         </div>
         <input
           type="text"
@@ -29,7 +28,7 @@
           <span
             v-for="color in eventColors"
             :key="color"
-            class="d-inline-block alert alert-primary m-0 me-2 square"
+            class="d-inline-block alert m-0 me-2 square"
             :class="eventColorClasses(color)"
             role="button"
             @click="setEventColor(color)"
@@ -45,7 +44,9 @@
           >
             Eintragen
           </button>
-          <button class="btn btn-danger" @click="resetEventTitle()">Inhalt löschen</button>
+          <button class="btn btn-danger" @click="resetEventTitle()">
+            Inhalt löschen
+          </button>
         </div>
       </div>
     </div>
@@ -76,9 +77,11 @@ export default {
       return this.event.title === "";
     },
   },
-  mounted(){
-    this.$refs.eventTitleInput.focus()
+
+  mounted() {
+    this.$refs.eventTitleInput.focus();
   },
+
   methods: {
     eventColorClasses(eventColor) {
       return [
@@ -102,11 +105,12 @@ export default {
       };
       this.error = false;
     },
-    resetEventTitle(){
-      return this.event.title = ""
-    }
+    resetEventTitle() {
+      this.event.title = "";
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

@@ -7,7 +7,7 @@
       <div class="card-body">
         <ul class="nav nav-pills nav-fill">
           <li
-            v-for="(item, componentName) in views"
+            v-for="(icon, componentName) in views"
             :key="componentName"
             class="nav-item"
             role="button"
@@ -30,11 +30,13 @@
               ><i class="fas fa-sort-numeric-down-alt text-success"></i
             ></a>
           </li>
-          <li class="nav-item" role="button">
-            <a
-              class="nav-link"
-              :class="isActiveOrdering('title')"
-              @click="changeOrdering('title')"
+          <li
+            class="nav-item"
+            :class="isActiveOrdering('title')"
+            @click="changeOrdering('title')"
+            role="button"
+          >
+            <a class="nav-link"
               ><i class="fas fa-sort-alpha-down text-success"></i
             ></a>
           </li>
@@ -66,11 +68,11 @@ export default {
         return ["border border-success"];
       }
     },
-    changeOrdering(ordering){
-      Store.mutations.setActiveOrdering(ordering)
+    changeOrdering(ordering) {
+      Store.mutations.setActiveOrdering(ordering);
     },
-    isActiveOrdering(ordering){
-      if (ordering === Store.getters.activeOrdering()){
+    isActiveOrdering(ordering) {
+      if (ordering === Store.getters.activeOrdering()) {
         return ["border border-success"]
       }
     }
@@ -78,4 +80,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

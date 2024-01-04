@@ -9,20 +9,24 @@
 </template>
 
 <script>
-import CalendarDay from "./CalendarDay.vue";
-import Store from "../store"
+import CalendarDay from "./CalendarDay";
+import Store from "../store";
 
 export default {
   name: "CalendarWeek",
   components: {
     CalendarDay,
   },
-  data(){
-    return{
+  data() {
+    return {
       calendarWeekData: Store.state.calendarWeekData,
-    }
-  }
+    };
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+h5 {
+  color: red;
+}
+</style>
